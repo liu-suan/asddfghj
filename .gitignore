@@ -1,0 +1,36 @@
+# ---- 操作系统 / 编辑器 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# ---- 编辑器与 IDE ----
+.vscode/
+.idea/
+*.sublime-workspace
+
+# ---- 依赖与构建产物（本项目为零依赖静态站点，通常不会产生） ----
+node_modules/
+dist/
+build/
+.cache/
+
+# ---- 日志与临时文件 ----
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.bak
+
+# ---- 本地环境与密钥（切勿提交） ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# ---- 开发期临时产物（_dev 下的测试资产需要提交，截图之外的临时文件忽略） ----
+_dev/tmp/
+_dev/shots/tmp-*.png

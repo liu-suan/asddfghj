@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F6F8F5">
+  <title>轻伴 LightMate · 大学生 AI 减脂陪伴</title>
+  <meta name="description" content="轻伴 LightMate — 面向大学生的 AI 减脂陪伴 Web Demo。AI 饮食识别 + 每日目标 + 行为打卡 + 动态提醒 + 长期成长反馈。温柔陪伴，坚定督促。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- 数据层：食物库 / 文案库 / 徽章 -->
+  <script src="assets/js/data.js"></script>
+  <!-- 工具层：DOM / 日期 / 图表 / 提示 -->
+  <script src="assets/js/util.js"></script>
+  <!-- 状态层：持久化 / 派生指标 / 动态督促引擎 -->
+  <script src="assets/js/store.js"></script>
+  <!-- 分析层：AI 识别（Demo）与建议生成 -->
+  <script src="assets/js/advice.js"></script>
+  <!-- 页面层 -->
+  <script src="assets/js/views/onboarding.js"></script>
+  <script src="assets/js/views/dashboard.js"></script>
+  <script src="assets/js/views/diet.js"></script>
+  <script src="assets/js/views/checkin.js"></script>
+  <script src="assets/js/views/growth.js"></script>
+  <script src="assets/js/views/plan.js"></script>
+  <!-- 路由与启动 -->
+  <script src="assets/js/app.js"></script>
+
+  <noscript>
+    <div style="max-width:560px;margin:80px auto;font-family:system-ui;text-align:center">
+      <h1>轻伴 LightMate</h1>
+      <p>这是一个 Web Demo，需要开启 JavaScript 才能运行。</p>
+    </div>
+  </noscript>
+</body>
+</html>
