@@ -27,6 +27,12 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # 首次运行时自动把仓库的 Pages 打开，并把发布方式设为 GitHub Actions，
+          # 这样就不需要手动去 Settings → Pages 里改下拉框。
+          # 如果这一步报 "Resource not accessible by integration"，
+          # 请手动到 Settings → Pages 把 Source 改成 GitHub Actions 后重跑本工作流。
+          enablement: true
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
