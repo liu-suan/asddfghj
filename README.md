@@ -30,6 +30,37 @@ node serve.js 8080     # 指定端口
 
 > 演示快捷键：在非输入状态下按 `1`～`5` 可直接切换五个页面。
 
+### 在线访问
+
+部署到 GitHub Pages 后可直接通过网址访问，部署步骤见 [DEPLOY.md](DEPLOY.md)。
+本地预览：
+
+```bash
+node serve.js        # http://localhost:5173/
+```
+
+---
+
+## 界面预览
+
+| 欢迎页 | 首次目标设置 |
+|---|---|
+| ![欢迎页](_dev/shots/01-welcome.png) | ![目标设置](_dev/shots/03-onboarding5.png) |
+
+| 今日 Dashboard | AI 饮食分析 |
+|---|---|
+| ![今日](_dev/shots/04-today.png) | ![饮食分析](_dev/shots/05-diet.png) |
+
+| 每日打卡 | 30 天成长 |
+|---|---|
+| ![打卡](_dev/shots/06-checkin.png) | ![成长](_dev/shots/07-growth.png) |
+
+移动端（390px 视口）：
+
+![移动端](_dev/shots/09-mobile-today.png)
+
+> 以上截图由 `_dev/shot.html` 与 `_dev/mobile.html` 用无头浏览器自动生成。
+
 ---
 
 ## 二、目录结构
