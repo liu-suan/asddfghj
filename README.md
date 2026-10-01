@@ -32,7 +32,11 @@ node serve.js 8080     # 指定端口
 
 ### 在线访问
 
-部署到 GitHub Pages 后可直接通过网址访问，部署步骤见 [DEPLOY.md](DEPLOY.md)。
+部署到 GitHub Pages 后可直接通过网址访问：
+
+- 🆕 **完全没建过仓库？看 [GITHUB-GUIDE.md](GITHUB-GUIDE.md)** —— 从注册账号到网页上线的保姆级全教程
+- 已经熟悉 GitHub？看 [DEPLOY.md](DEPLOY.md) —— 一键部署脚本与配置说明
+
 本地预览：
 
 ```bash
