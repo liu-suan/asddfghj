@@ -4,6 +4,8 @@
 > 当前阶段：Web Demo / MVP
 > 交付形态：零依赖静态网页（双击即开，不需要构建、不需要联网、不需要后端）
 
+🔗 **在线体验：<https://liu-suan.github.io/asddfghj/>**　|　📦 **仓库：<https://github.com/liu-suan/asddfghj>**
+
 ---
 
 ## 一、快速开始
