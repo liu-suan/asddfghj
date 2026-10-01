@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>轻伴 · 截图</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>window.__R = (new URLSearchParams(location.search)).get('r') || 'today';</script>
+
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/store.js"></script>
+  <script src="../assets/js/advice.js"></script>
+  <script src="../assets/js/views/onboarding.js"></script>
+  <script src="../assets/js/views/dashboard.js"></script>
+  <script src="../assets/js/views/diet.js"></script>
+  <script src="../assets/js/views/checkin.js"></script>
+  <script src="../assets/js/views/growth.js"></script>
+  <script src="../assets/js/views/plan.js"></script>
+  <script src="../assets/js/app.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var R = window.__R;
+    setTimeout(function () {
+      var fresh = (R === 'welcome' || R === 'onboarding' || R === 'onboarding5');
+      if (fresh) LM.store.reset();
+      else { LM.store.reset(); LM.store.seedDemo(); }
+
+      location.hash = '#/' + (R === 'onboarding5' ? 'onboarding' : R);
+      LM.app.render();
+
+      setTimeout(function () {
+        if (R === 'onboarding') {
+          var opts = document.querySelectorAll('.opt');
+          if (opts[0]) opts[0].click();
+          setTimeout(function () {
+            var o2 = document.querySelectorAll('.opt');
+            if (o2[3]) o2[3].click();
+          }, 40);
+        }
+        if (R === 'onboarding5') {
+          function step() {
+            var n = document.querySelector('#o-next');
+            if (!n) return;
+            if (n.disabled) {
+              var o = document.querySelectorAll('.opt');
+              if (o[0]) o[0].click();
+            }
+            n.click();
+          }
+          step();
+          setTimeout(function () { step(); }, 30);
+          setTimeout(function () { step(); }, 60);
+          setTimeout(function () { step(); }, 90);
+          setTimeout(function () { step(); }, 120);
+        }
+        if (R === 'diet') {
+          var lunch = document.querySelector('[data-meal="lunch"]');
+          if (lunch) lunch.click();
+          setTimeout(function () {
+            var s = document.querySelector('[data-sample="canteen"]');
+            if (s) s.click();
+            setTimeout(function () {
+              var b = document.querySelector('#scan-btn');
+              if (b) b.click();
+            }, 80);
+          }, 80);
+        }
+        if (location.search.indexOf('diag=2') >= 0) {
+          setTimeout(function () {
+            var vw = window.innerWidth;
+            var out = ['innerWidth=' + vw + ' docScrollWidth=' + document.documentElement.scrollWidth +
+                       ' bodyScrollWidth=' + document.body.scrollWidth];
+            var all = document.querySelectorAll('.content *');
+            var seen = [];
+            Array.prototype.forEach.call(all, function (elm) {
+              var r = elm.getBoundingClientRect();
+              if (r.right > vw + 1 && r.width > 0) {
+                var path = elm.tagName + '.' + String(elm.className).split(' ').slice(0, 3).join('.');
+                seen.push({ p: path, right: Math.round(r.right), w: Math.round(r.width), text: (elm.textContent || '').replace(/\s+/g, ' ').slice(0, 22) });
+              }
+            });
+            // 只保留最外层若干条
+            seen.slice(0, 24).forEach(function (s) {
+              out.push('OVERFLOW ' + s.p + ' right=' + s.right + ' w=' + s.w + ' 「' + s.text + '」');
+            });
+            out.push('total overflowing nodes: ' + seen.length);
+            var pre = document.createElement('pre');
+            pre.id = 'diag';
+            pre.textContent = out.join('\n');
+            document.body.appendChild(pre);
+          }, 1500);
+        }
+        if (location.search.indexOf('diag=1') >= 0) {
+          setTimeout(function () {
+            var row = document.querySelector('.food-row');
+            var out = [];
+            if (!row) { out.push('NO .food-row'); }
+            else {
+              var cs = getComputedStyle(row);
+              out.push('food-row display=' + cs.display + ' flexWrap=' + cs.flexWrap + ' flexDir=' + cs.flexDirection + ' align=' + cs.alignItems);
+              out.push('food-row rect=' + JSON.stringify(row.getBoundingClientRect()));
+              Array.prototype.forEach.call(row.children, function (c, i) {
+                var s2 = getComputedStyle(c);
+                out.push('  child[' + i + '] <' + c.tagName + ' class="' + c.className + '"> display=' + s2.display +
+                  ' flex=' + s2.flex + ' w=' + Math.round(c.getBoundingClientRect().width) +
+                  ' left=' + Math.round(c.getBoundingClientRect().left) +
+                  ' top=' + Math.round(c.getBoundingClientRect().top));
+                Array.prototype.forEach.call(c.children, function (g, j) {
+                  out.push('      g[' + j + '] <' + g.tagName + ' class="' + g.className + '"> top=' + Math.round(g.getBoundingClientRect().top) +
+                    ' left=' + Math.round(g.getBoundingClientRect().left) + ' w=' + Math.round(g.getBoundingClientRect().width));
+                });
+              });
+            }
+            var pre = document.createElement('pre');
+            pre.id = 'diag';
+            pre.textContent = out.join('\n');
+            document.body.appendChild(pre);
+          }, 3200);
+        }
+      }, 80);
+    }, 40);
+  });
+  </script>
+</body>
+</html>

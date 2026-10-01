@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>轻伴 · 移动端视口</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: #DDE3DD; }
+    iframe { display: block; border: 0; background: #fff; }
+    #probe { display: none; }
+  </style>
+</head>
+<body>
+  <iframe id="fr"></iframe>
+  <pre id="probe"></pre>
+  <script>
+    var q = new URLSearchParams(location.search);
+    var w = q.get('w') || '390';
+    var h = q.get('h') || '1400';
+    var r = q.get('r') || 'today';
+    var diag = q.get('diag') || '';
+
+    var fr = document.getElementById('fr');
+    fr.style.width = w + 'px';
+    fr.style.height = h + 'px';
+    fr.src = 'shot.html?r=' + r + (diag ? '&diag=' + diag : '');
+
+    // 把 iframe 内部的诊断结果搬到父文档，方便 --dump-dom 读取
+    if (diag) {
+      setTimeout(function () {
+        try {
+          var d = fr.contentDocument.querySelector('#diag');
+          var pre = document.getElementById('probe');
+          pre.textContent = d ? d.textContent : 'NO CHILD DIAG';
+        } catch (e) {
+          document.getElementById('probe').textContent = 'IFRAME ACCESS ERROR: ' + e.message;
+        }
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
